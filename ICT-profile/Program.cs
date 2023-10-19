@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<ICTcontext>
-    (options => options.UseSqlServer("Server=.; Database=linkedInDb; Trusted_Connection=true; Encrypt=false;"));
+    (options => options.UseSqlServer("Server=.; Database=ICTdb; Trusted_Connection=true; Encrypt=false;"));
 
 var app = builder.Build();
 

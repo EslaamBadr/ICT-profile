@@ -9,4 +9,9 @@ public class WorkExperience
     public DateTime EndDate { get; set; }
     public string CompanyImage { get; set; } = string.Empty;
     public string CompanyName { get; set;} = string.Empty;
+
+    public User? User { get; set; }
+    public Guid? UserId { get; set; }
+
+
 }
