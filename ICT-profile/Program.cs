@@ -5,7 +5,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+//runtime view.
+builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+//sql connection
 builder.Services.AddDbContext<ICTcontext>
     (options => options.UseSqlServer("Server=.; Database=ICTdb; Trusted_Connection=true; Encrypt=false;"));
 
