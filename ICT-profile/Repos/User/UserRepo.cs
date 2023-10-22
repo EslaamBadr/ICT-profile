@@ -9,4 +9,29 @@ public class UserRepo : IUserRepo
     {
         _context = context;
     }
+
+    IEnumerable<User> IUserRepo.GetUsers()
+    {
+        return _context.Users;
+    }
+
+    User? IUserRepo.GetUser(Guid id)
+    {
+        return _context.Users.Find(id);
+    }
+
+    void IUserRepo.UpdateUser(User user)
+    {
+        _context.Users.Update(user);
+    }
+
+    void IUserRepo.DeleteUser(User user)
+    {
+        _context.Users.Remove(user);
+    }
+
+    void IUserRepo.AddUser(User user)
+    {
+        _context.Users.Add(user);
+    }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using System.Reflection.Emit;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ICT_profile.Data;
 
@@ -8,6 +9,7 @@ public class ICTcontext : DbContext
 {
     public DbSet<User> Users => Set<User>();
     public DbSet<Contact> Contacts => Set<Contact>();
+    public DbSet<About> About => Set<About>();
     public DbSet<Education> Educations => Set<Education>();
     public DbSet<WorkExperience> Experiences => Set<WorkExperience>();
     public DbSet<Licenses_Certificates> Licenses_Certificatess => Set<Licenses_Certificates>();
@@ -33,6 +35,10 @@ public class ICTcontext : DbContext
 
         modelBuilder.Entity<User>()
             .HasOne(c => c.Contact)
+            .WithOne(u => u.User);
+
+        modelBuilder.Entity<User>()
+            .HasOne(a => a.About)
             .WithOne(u => u.User);
 
         modelBuilder.Entity<User>()

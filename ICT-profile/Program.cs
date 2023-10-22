@@ -1,4 +1,6 @@
 using ICT_profile.Data;
+using ICT_profile.Manegers;
+using ICT_profile.Repos;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +12,12 @@ builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 //sql connection
 builder.Services.AddDbContext<ICTcontext>
     (options => options.UseSqlServer("Server=.; Database=ICTdb; Trusted_Connection=true; Encrypt=false;"));
+
+builder.Services.AddScoped<IUserRepo, UserRepo>();
+builder.Services.AddScoped<IUserManeger, UserManeger>();
+
+builder.Services.AddScoped<IEdueRepo, EdueRepo>();
+builder.Services.AddScoped<IEdueManeger, EdueManeger>();
 
 var app = builder.Build();
 

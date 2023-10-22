@@ -1,4 +1,7 @@
-﻿namespace ICT_profile.Data;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+
+namespace ICT_profile.Data;
 
 public class User
 {
@@ -6,8 +9,9 @@ public class User
     public string FirstName { get; set; }= string.Empty;
     public string LastName { get; set; } = string.Empty;
     public string Image { get; set; } = string.Empty;
-    public string About { get; set; } = string.Empty;
+    public string JobTitle { get; set; } = string.Empty;
     public Contact? Contact { get; set; }
+    public About? About { get; set; }
     public IEnumerable<WorkExperience> Experiences { get; set; } = new List<WorkExperience>();
     public IEnumerable<Education> Educations { get; set; } = new List<Education>();
     public IEnumerable<Licenses_Certificates> Licenses_Certificatess { get; set; } = new List<Licenses_Certificates>();

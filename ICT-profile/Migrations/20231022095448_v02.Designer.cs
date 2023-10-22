@@ -4,6 +4,7 @@ using ICT_profile.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ICT_profile.Migrations
 {
     [DbContext(typeof(ICTcontext))]
-    partial class ICTcontextModelSnapshot : ModelSnapshot
+    [Migration("20231022095448_v02")]
+    partial class v02
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,30 +24,6 @@ namespace ICT_profile.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("ICT_profile.Data.About", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("AboutUser")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId")
-                        .IsUnique()
-                        .HasFilter("[UserId] IS NOT NULL");
-
-                    b.ToTable("About");
-                });
 
             modelBuilder.Entity("ICT_profile.Data.Accomplishment", b =>
                 {
@@ -212,6 +191,10 @@ namespace ICT_profile.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("About")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -271,15 +254,6 @@ namespace ICT_profile.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Experiences");
-                });
-
-            modelBuilder.Entity("ICT_profile.Data.About", b =>
-                {
-                    b.HasOne("ICT_profile.Data.User", "User")
-                        .WithOne("About")
-                        .HasForeignKey("ICT_profile.Data.About", "UserId");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ICT_profile.Data.Accomplishment", b =>
@@ -347,8 +321,6 @@ namespace ICT_profile.Migrations
 
             modelBuilder.Entity("ICT_profile.Data.User", b =>
                 {
-                    b.Navigation("About");
-
                     b.Navigation("Accomplishments");
 
                     b.Navigation("Contact");
