@@ -15,7 +15,7 @@ public class UserRepo : IUserRepo
         return _context.Users;
     }
 
-    User? IUserRepo.GetUser(Guid id)
+    public User? GetUser(Guid id)
     {
         return _context.Users.Find(id);
     }

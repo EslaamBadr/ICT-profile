@@ -4,6 +4,5 @@ namespace ICT_profile.Repos;
 
 public interface IEdueRepo
 {
-    IEnumerable<Education> GetEdues();
-    Education? GetEdue(int id);
+    IEnumerable<Education> GetEdues(Guid id);
 }

@@ -19,6 +19,27 @@ builder.Services.AddScoped<IUserManeger, UserManeger>();
 builder.Services.AddScoped<IEdueRepo, EdueRepo>();
 builder.Services.AddScoped<IEdueManeger, EdueManeger>();
 
+builder.Services.AddScoped<IAboutRepo, AboutRepo>();
+builder.Services.AddScoped<IAboutManeger, AboutManeger>();
+
+builder.Services.AddScoped<IContactRepo, ContactRepo>();
+builder.Services.AddScoped<IContactManeger, ContactManeger>();
+
+builder.Services.AddScoped<IWorkExperienceRepo, WorkExperienceRepo>();
+builder.Services.AddScoped<IWorkExperienceManeger, WorkExperienceManeger>();
+
+builder.Services.AddScoped<ILicenses_CertificatesRepo, Licenses_CertificatesRepo>();
+builder.Services.AddScoped<ILiecenses_CertificatesManeger,  Licenses_CertificatesManeger>();
+
+builder.Services.AddScoped<IOtherExperiencesRepo, OtherExperiencesRepo>();
+builder.Services.AddScoped<IOtherExperiencesManeger, OtherExperiencesManeger>();
+
+builder.Services.AddScoped<ISkillsRepo, SkillsRepo>();
+builder.Services.AddScoped<ISkillsManeger, SkillsManeger>();
+
+builder.Services.AddScoped<IAccomplishmentRepo, AccomplishmentRepo>();
+builder.Services.AddScoped<IAccomplishmentManeger, AccomplishmentManeger>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
