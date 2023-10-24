@@ -1,5 +1,6 @@
 ﻿using ICT_profile.Data;
 using ICT_profile.Repos;
+using ICT_profile.View_Models;
 
 namespace ICT_profile.Manegers;
 
@@ -23,5 +24,19 @@ public class AboutManeger : IAboutManeger
             AboutUser = about.AboutUser
         };
     }
-    
+
+    public AboutUpdateVM? GetAboutToUpdate(Guid id)
+    {
+        About? about = _abouteRepo.GetAbout(id);
+        if (about is null)
+        {
+            return null;
+        }
+
+        return new AboutUpdateVM
+        {
+            Id = about.Id,
+            AboutUser = about.AboutUser
+        };
+    }
 }

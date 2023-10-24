@@ -20,3 +20,9 @@ body {
 .nav {
     background-image: url("/assets/ICT_bg.jpg");
 }
+
+.modal-content{
+    margin-top: 30%;
+    width:50rem;
+    height: 30rem;
+}

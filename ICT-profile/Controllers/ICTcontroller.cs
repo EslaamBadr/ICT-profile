@@ -37,20 +37,6 @@ public class ICTController : Controller
         return View();
     }
 
-    [HttpGet]
-    public IActionResult UserInfo(Guid id)
-    {
-        UserReadVM? user = _userManeger.GetUser(id);
-        return View(user);
-    }
-
-    [HttpPut]
-    public IActionResult Update(UserUpdateVM userUpdateVM)
-    {
-        _userManeger.UpdateUser(userUpdateVM);
-        return RedirectToAction("Index");
-    }
-
     public IActionResult Profile(Guid id)
     {
         FullView fullView = new FullView();
@@ -64,6 +50,9 @@ public class ICTController : Controller
         IEnumerable<OtherExperienceReadVM> others = _othersManeger.GetOthers(Guid.Parse(sId));
         IEnumerable<SKillReadVM> skills = _skillsManeger.GetSkills(Guid.Parse(sId));
         IEnumerable<AccomplishmentReadVM> accomplishments = _accomplishmentManeger.GetAccomplishments(Guid.Parse(sId));
+
+        UserUpdateVM userToUpdate = _userManeger.GetUserForUpdate(Guid.Parse(sId));
+        AboutUpdateVM aboutToUpdate = _aboutManeger.GetAboutToUpdate(Guid.Parse(sId));
         
         fullView.User = user;
         fullView.About = about;
@@ -74,6 +63,31 @@ public class ICTController : Controller
         fullView.OtherExperiencs = others;
         fullView.Skills = skills;
         fullView.Accomplishment = accomplishments;
+        fullView.UserUpdateVM = userToUpdate;
+        fullView.AboutUpdateVM = aboutToUpdate;
+
         return View(fullView);
+    }
+
+
+    [HttpGet]
+    public IActionResult EditUserInfo(Guid id)
+    {
+        UserUpdateVM? model = _userManeger.GetUserForUpdate(id);
+        return View(model);
+    }
+
+    [HttpPost]
+    public IActionResult EditUserInfo(UserUpdateVM userUpdateVM)
+    {
+        _userManeger.UpdateUser(userUpdateVM);
+        return RedirectToAction("Profile");
+    }
+
+    [HttpGet]
+    public IActionResult EditUserAbout(Guid id)
+    {
+        AboutUpdateVM? model = _aboutManeger.GetAboutToUpdate(id);
+        return View(model);
     }
 }

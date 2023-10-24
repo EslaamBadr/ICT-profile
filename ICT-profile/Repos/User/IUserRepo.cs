@@ -9,4 +9,5 @@ public interface IUserRepo
     void UpdateUser(User user);
     void DeleteUser(User user);
     void AddUser(User user);
+    int SaveChanges();
 }

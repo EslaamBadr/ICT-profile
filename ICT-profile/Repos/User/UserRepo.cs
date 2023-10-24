@@ -20,9 +20,10 @@ public class UserRepo : IUserRepo
         return _context.Users.Find(id);
     }
 
-    void IUserRepo.UpdateUser(User user)
+    public void UpdateUser(User user)
     {
         _context.Users.Update(user);
+        //SaveChanges();
     }
 
     void IUserRepo.DeleteUser(User user)
@@ -33,5 +34,10 @@ public class UserRepo : IUserRepo
     void IUserRepo.AddUser(User user)
     {
         _context.Users.Add(user);
+    }
+
+    public int SaveChanges()
+    {
+        return _context.SaveChanges();
     }
 }
