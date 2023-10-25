@@ -1,6 +1,6 @@
 ﻿namespace ICT_profile.Data;
 
-public class WorkExperienceReadVM
+public class WorkExperienceUpdateVM
 {
     public Guid? UserId { get; set; }
     public int Id { get; set; }

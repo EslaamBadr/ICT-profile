@@ -12,6 +12,8 @@ public class FullView
     public ContactUpdateVM? ContactUpdateVM { get; set; }
     public IEnumerable<EducationReadVM>? Educations { get; set; }
     public IEnumerable<WorkExperienceReadVM>? WorkExperiences { get; set;}
+    public WorkExperienceReadVM? Experience { get; set; }
+    public WorkExperienceUpdateVM? ExperienceUpdateVM { get; set; }
     public IEnumerable<OtherExperienceReadVM>? OtherExperiencs { get; set; }
     public IEnumerable<AccomplishmentReadVM>? Accomplishment { get; set;}
     public IEnumerable<Licences_CertificatesReadVM>? Licenses { get; set; }

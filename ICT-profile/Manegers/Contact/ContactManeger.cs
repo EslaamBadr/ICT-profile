@@ -25,4 +25,34 @@ public class ContactManeger : IContactManeger
             Address = contact.Address
         };
     }
+
+    public ContactUpdateVM? GetContactToUpdate(Guid id)
+    {
+        Contact? contact = _contactRepo.GetContact(id);
+        if (contact is null)
+        {
+            return null;
+        }
+
+        return new ContactUpdateVM
+        {
+            UserId = (Guid)contact.UserId,
+            Email = contact.Email,
+            PhoneNumber = contact.PhoneNumber,
+            Address = contact.Address
+        };
+    }
+
+    public void UpdateUserContact(ContactUpdateVM contactUpdateVM)
+    {
+        Contact? contact = _contactRepo.GetContact(contactUpdateVM.UserId);
+        if (contact == null)
+        {
+            return;
+        }
+        contact.PhoneNumber = contactUpdateVM.PhoneNumber;
+        contact.Address = contactUpdateVM.Address;
+        _contactRepo.UpdateUserContact(contact);
+        _contactRepo.SaveChanges();
+    }
 }

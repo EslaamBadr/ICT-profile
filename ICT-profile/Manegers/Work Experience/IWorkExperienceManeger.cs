@@ -4,5 +4,7 @@ namespace ICT_profile.Manegers;
 
 public interface IWorkExperienceManeger
 {
-    IEnumerable<WorkExperienceReadVM> GetExperience(Guid id);
+    IEnumerable<WorkExperienceReadVM>? GetExperiences(Guid id);
+    WorkExperienceUpdateVM GetExperience(int id);
+    void UpdateUserWorkExperience (WorkExperienceUpdateVM experienceUpdateVM);
 }

@@ -4,5 +4,8 @@ namespace ICT_profile.Repos;
 
 public interface IWorkExperienceRepo
 {
-    IEnumerable<WorkExperience>? GetWorkExperience(Guid id);
+    IEnumerable<WorkExperience>? GetAllExperiences(Guid id);
+    WorkExperience GetWorkExperience(int id);
+    void UpdateUserWorkExperience(WorkExperience experience);
+    int SaveChanges();
 }

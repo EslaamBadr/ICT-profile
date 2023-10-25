@@ -15,4 +15,15 @@ public class AboutRepo : IAboutRepo
         return _context.Users.Where(a => a.Id == id).Select(a => a.About).FirstOrDefault();
         //return _context.About.Find(id);
     }
+
+
+    public void UpdateUserAbout(About about)
+    {
+        _context.About.Update(about);
+    }
+
+    public int SaveChanges()
+    {
+        return _context.SaveChanges();
+    }
 }

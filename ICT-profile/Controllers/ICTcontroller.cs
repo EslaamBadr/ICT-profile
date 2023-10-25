@@ -44,7 +44,9 @@ public class ICTController : Controller
         UserReadVM? user = _userManeger.GetUser(Guid.Parse(sId));
         AboutReadVM about = _aboutManeger.GetAbout(Guid.Parse(sId));
         ContactReadVM? contact = _contactManeger.GetContact(Guid.Parse(sId));
-        IEnumerable<WorkExperienceReadVM>? experiences = _workExperienceManeger.GetExperience(Guid.Parse(sId));
+        IEnumerable<WorkExperienceReadVM>? experiences = _workExperienceManeger.GetExperiences(Guid.Parse(sId));
+
+
         IEnumerable<EducationReadVM>? educations = _edueManeger.GetEdues(Guid.Parse(sId));
         IEnumerable<Licences_CertificatesReadVM> licenses = _licensesManeger.GetCertificates(Guid.Parse(sId));
         IEnumerable<OtherExperienceReadVM> others = _othersManeger.GetOthers(Guid.Parse(sId));
@@ -53,11 +55,15 @@ public class ICTController : Controller
 
         UserUpdateVM userToUpdate = _userManeger.GetUserForUpdate(Guid.Parse(sId));
         AboutUpdateVM aboutToUpdate = _aboutManeger.GetAboutToUpdate(Guid.Parse(sId));
+        ContactUpdateVM contactToUpdate = _contactManeger.GetContactToUpdate(Guid.Parse(sId));
+        WorkExperienceUpdateVM experienceToUpdate = _workExperienceManeger.GetExperience(1);
+        
         
         fullView.User = user;
         fullView.About = about;
         fullView.Contact = contact;
         fullView.WorkExperiences = experiences;
+        //fullView.Experience = experience;
         fullView.Educations = educations;
         fullView.Licenses = licenses;
         fullView.OtherExperiencs = others;
@@ -65,6 +71,8 @@ public class ICTController : Controller
         fullView.Accomplishment = accomplishments;
         fullView.UserUpdateVM = userToUpdate;
         fullView.AboutUpdateVM = aboutToUpdate;
+        fullView.ContactUpdateVM = contactToUpdate;
+        fullView.ExperienceUpdateVM = experienceToUpdate;
 
         return View(fullView);
     }
@@ -89,5 +97,38 @@ public class ICTController : Controller
     {
         AboutUpdateVM? model = _aboutManeger.GetAboutToUpdate(id);
         return View(model);
+    }
+
+    [HttpPost]
+    public IActionResult EditUserAbout(AboutUpdateVM aboutUpdateVM)
+    {
+        _aboutManeger.UpdateUserAbout(aboutUpdateVM);
+        return RedirectToAction("Profile");
+    }
+
+    [HttpGet]
+    public IActionResult EditUserContact(Guid id)
+    {
+        ContactUpdateVM? model = _contactManeger.GetContactToUpdate(id);
+        return View(model);
+    }
+    [HttpPost]
+    public IActionResult EditUserContact(ContactUpdateVM contactUpdateVM)
+    {
+        _contactManeger.UpdateUserContact(contactUpdateVM);
+        return RedirectToAction("Profile");        
+    }
+
+    [HttpGet]
+    public IActionResult EditUserExperience(int id)
+    {
+        WorkExperienceUpdateVM? model = _workExperienceManeger.GetExperience(id);
+        return View(model);
+    }
+    [HttpPost]
+    public IActionResult EditUserExperience(WorkExperienceUpdateVM experiencetUpdateVM)
+    {
+        _workExperienceManeger.UpdateUserWorkExperience(experiencetUpdateVM);
+        return RedirectToAction("Profile");
     }
 }

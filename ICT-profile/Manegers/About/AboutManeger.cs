@@ -35,8 +35,21 @@ public class AboutManeger : IAboutManeger
 
         return new AboutUpdateVM
         {
+            UserId = (Guid)about.UserId,
             Id = about.Id,
             AboutUser = about.AboutUser
         };
+    }
+
+    public void UpdateUserAbout(AboutUpdateVM aboutUpdateVM)
+    {
+        About? about = _abouteRepo.GetAbout(aboutUpdateVM.UserId);
+        if (about == null)
+        {
+            return;
+        }
+        about.AboutUser = aboutUpdateVM.AboutUser;
+        _abouteRepo.UpdateUserAbout(about);
+        _abouteRepo.SaveChanges();
     }
 }
