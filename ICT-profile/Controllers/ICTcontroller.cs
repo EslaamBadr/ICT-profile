@@ -57,7 +57,7 @@ public class ICTController : Controller
         WorkExperienceUpdateVM experienceToUpdate = _workExperienceManeger.GetExperience(1);
         EducationUpdateVM educationToUpdate = _edueManeger.GetEducation(1);
 
-        EducationUpdateVM educationToAdd = _edueManeger.GetEducation(1);
+        //vm
 
 
         fullView.User = user;
@@ -69,12 +69,12 @@ public class ICTController : Controller
         fullView.OtherExperiencs = others;
         fullView.Skills = skills;
         fullView.Accomplishment = accomplishments;
+
         fullView.UserUpdateVM = userToUpdate;
         fullView.AboutUpdateVM = aboutToUpdate;
         fullView.ContactUpdateVM = contactToUpdate;
         fullView.ExperienceUpdateVM = experienceToUpdate;
         fullView.EducationUpdateVM = educationToUpdate;
-        fullView.EducationUpdateVM = educationToAdd;
 
         return View(fullView);
     }
@@ -147,10 +147,10 @@ public class ICTController : Controller
         return RedirectToAction("Profile");
     }
 
-    //[HttpPost]
-    //public IActionResult AddUserEducation(DoctorAddVM doctorVM)
-    //{
-    //    _doctorsManager.AddUsingViewModel(doctorVM);
-    //    return RedirectToAction(nameof(Index));
-    //}
+    [HttpPost]
+    public IActionResult AddUserExperience(WorkExperienceReadVM experienceVM)
+    {
+        _workExperienceManeger.AddUserWorkExperience(experienceVM);
+        return RedirectToAction("Profile");
+    }
 }

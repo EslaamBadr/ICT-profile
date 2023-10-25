@@ -76,6 +76,7 @@ public class WorkExperienceManeger : IWorkExperienceManeger
     {
         var experience = new WorkExperience
         {
+            UserId = experienceVM.UserId,
             CompanyName = experienceVM.CompanyName,
             CompanyImage = experienceVM.CompanyImage,
             Description = experienceVM.Description,
