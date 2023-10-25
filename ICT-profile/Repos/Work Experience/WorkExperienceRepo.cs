@@ -1,5 +1,6 @@
 ﻿using ICT_profile.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Numerics;
 
 namespace ICT_profile.Repos;
 
@@ -26,6 +27,10 @@ public class WorkExperienceRepo : IWorkExperienceRepo
         _context.Experiences.Update(experience);
     }
 
+    public void Add(WorkExperience experience)
+    {
+        _context.Experiences.Add(experience);
+    }
     public int SaveChanges()
     {
         return _context.SaveChanges();

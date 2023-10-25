@@ -1,5 +1,6 @@
 ﻿using ICT_profile.Data;
 using ICT_profile.Repos;
+using System.Numerics;
 
 namespace ICT_profile.Manegers;
 
@@ -68,6 +69,22 @@ public class WorkExperienceManeger : IWorkExperienceManeger
         experience.EndDate = experienceUpdateVM.EndDate;
         experience.RoleName = experienceUpdateVM.RoleName;
         _experienceRepo.UpdateUserWorkExperience(experience);
+        _experienceRepo.SaveChanges();
+    }
+
+    public void AddUserWorkExperience(WorkExperienceReadVM experienceVM)
+    {
+        var experience = new WorkExperience
+        {
+            CompanyName = experienceVM.CompanyName,
+            CompanyImage = experienceVM.CompanyImage,
+            Description = experienceVM.Description,
+            StartDate = experienceVM.StartDate,
+            EndDate = experienceVM.EndDate,
+            RoleName = experienceVM.RoleName,
+        };
+
+        _experienceRepo.Add(experience);
         _experienceRepo.SaveChanges();
     }
 }

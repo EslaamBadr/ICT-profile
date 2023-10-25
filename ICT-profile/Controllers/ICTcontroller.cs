@@ -45,8 +45,6 @@ public class ICTController : Controller
         AboutReadVM about = _aboutManeger.GetAbout(Guid.Parse(sId));
         ContactReadVM? contact = _contactManeger.GetContact(Guid.Parse(sId));
         IEnumerable<WorkExperienceReadVM>? experiences = _workExperienceManeger.GetExperiences(Guid.Parse(sId));
-
-
         IEnumerable<EducationReadVM>? educations = _edueManeger.GetEdues(Guid.Parse(sId));
         IEnumerable<Licences_CertificatesReadVM> licenses = _licensesManeger.GetCertificates(Guid.Parse(sId));
         IEnumerable<OtherExperienceReadVM> others = _othersManeger.GetOthers(Guid.Parse(sId));
@@ -57,13 +55,15 @@ public class ICTController : Controller
         AboutUpdateVM aboutToUpdate = _aboutManeger.GetAboutToUpdate(Guid.Parse(sId));
         ContactUpdateVM contactToUpdate = _contactManeger.GetContactToUpdate(Guid.Parse(sId));
         WorkExperienceUpdateVM experienceToUpdate = _workExperienceManeger.GetExperience(1);
-        
-        
+        EducationUpdateVM educationToUpdate = _edueManeger.GetEducation(1);
+
+        EducationUpdateVM educationToAdd = _edueManeger.GetEducation(1);
+
+
         fullView.User = user;
         fullView.About = about;
         fullView.Contact = contact;
         fullView.WorkExperiences = experiences;
-        //fullView.Experience = experience;
         fullView.Educations = educations;
         fullView.Licenses = licenses;
         fullView.OtherExperiencs = others;
@@ -73,6 +73,8 @@ public class ICTController : Controller
         fullView.AboutUpdateVM = aboutToUpdate;
         fullView.ContactUpdateVM = contactToUpdate;
         fullView.ExperienceUpdateVM = experienceToUpdate;
+        fullView.EducationUpdateVM = educationToUpdate;
+        fullView.EducationUpdateVM = educationToAdd;
 
         return View(fullView);
     }
@@ -131,4 +133,24 @@ public class ICTController : Controller
         _workExperienceManeger.UpdateUserWorkExperience(experiencetUpdateVM);
         return RedirectToAction("Profile");
     }
+
+    [HttpGet]
+    public IActionResult EditUserEducation(int id)
+    {
+        EducationUpdateVM? model = _edueManeger.GetEducation(id);
+        return View(model);
+    }
+    [HttpPost]
+    public IActionResult EditUserEducation(EducationUpdateVM educationtUpdateVM)
+    {
+        _edueManeger.UpdateUserEducation(educationtUpdateVM);
+        return RedirectToAction("Profile");
+    }
+
+    //[HttpPost]
+    //public IActionResult AddUserEducation(DoctorAddVM doctorVM)
+    //{
+    //    _doctorsManager.AddUsingViewModel(doctorVM);
+    //    return RedirectToAction(nameof(Index));
+    //}
 }

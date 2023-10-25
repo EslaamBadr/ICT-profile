@@ -5,4 +5,7 @@ namespace ICT_profile.Repos;
 public interface IEdueRepo
 {
     IEnumerable<Education> GetEdues(Guid id);
+    Education GetEducation(int id);
+    void UpdateUserEducation(Education education);
+    int SaveChanges();
 }

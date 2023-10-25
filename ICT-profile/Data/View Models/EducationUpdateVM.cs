@@ -1,6 +1,6 @@
 ﻿namespace ICT_profile.Data;
 
-public class EducationReadVM
+public class EducationUpdateVM
 {
     public Guid UserId { get; set; }
     public int Id { get; set; }

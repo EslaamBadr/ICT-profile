@@ -51,8 +51,8 @@
                 <div class="card mt-1">
                     <div class="card-body">
                         <h5 class="card-title">Background </h5>
-                        <h6 class="mt-3" style="color:blue">Work Experience:</h6>
-                        @foreach (var ex in Model.WorkExperiences)
+                            <h6 class="mt-3" style="color:blue">Work Experience:</h6>
+                            @foreach (var ex in Model.WorkExperiences)
                         {
                             <div class="row mb-2">
                                 <div class="col-1">
@@ -77,7 +77,7 @@
                                     <img src="@edu.UniverstyImage" style="border-radius:50%; width:2.5rem">
                                 </div>
                                 <div class="col-11">
-                                    <h6>@edu.FacultyName</h6>
+                                        <h6>@edu.FacultyName <a class="ms-3" asp-controller="ICT" asp-action="EditUserEducation" asp-route-id="@edu.Id"><i class="fa fa-edit"></i></a></h6>
                                     <p>@edu.UniverstyName ( @edu.StartDate.ToString("MMM yyyy") - @edu.EndDate.ToString("MMM yyyy"))</p>
                                 </div>
                             </div>

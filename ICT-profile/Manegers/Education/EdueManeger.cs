@@ -10,22 +10,6 @@ public class EdueManeger : IEdueManeger
     {
         _edueRepo = edueRepo;
     }
-    //public EducationReadVM? GetEdue(int id)
-    //{
-    //    Education? edue = _edueRepo.GetEdue(id);
-    //    if (edue == null)
-    //    {
-    //        return null;
-    //    }
-    //    return new EducationReadVM
-    //    {
-    //        UniverstyName = edue.UniverstyName,
-    //        FacultyName = edue.FacultyName,
-    //        UniverstyImage = edue.UniverstyImage,
-    //        StartDate = edue.StartDate,
-    //        EndDate = edue.EndDate
-    //    };
-    //}
 
     public IEnumerable<EducationReadVM> GetEdues(Guid id)
     {
@@ -33,6 +17,8 @@ public class EdueManeger : IEdueManeger
         IEnumerable<EducationReadVM> eduesVM = edues
             .Select(e => new EducationReadVM
             {
+                UserId = (Guid)e.UserId,
+                Id = e.Id,
                 UniverstyName = e.UniverstyName,
                 FacultyName = e.FacultyName,
                 UniverstyImage = e.UniverstyImage,
@@ -40,5 +26,40 @@ public class EdueManeger : IEdueManeger
                 EndDate = e.EndDate
             });
         return eduesVM;
+    }
+
+    public EducationUpdateVM GetEducation(int id)
+    {
+        Education education = _edueRepo.GetEducation(id);
+        if (education == null)
+        {
+            return null;
+        }
+        return new EducationUpdateVM
+        {
+            Id = education.Id,
+            UserId = (Guid)education.UserId,
+            UniverstyName= education.UniverstyName,
+            UniverstyImage= education.UniverstyImage,
+            FacultyName= education.FacultyName,
+            StartDate= education.StartDate,
+            EndDate= education.EndDate,
+        };
+    }
+
+    void IEdueManeger.UpdateUserEducation(EducationUpdateVM educationUpdateVM)
+    {
+        Education education = _edueRepo.GetEducation(educationUpdateVM.Id);
+        if (education == null)
+        {
+            return;
+        }
+        education.UniverstyImage = educationUpdateVM.UniverstyImage;
+        education.UniverstyName = educationUpdateVM.UniverstyName;
+        education.StartDate = educationUpdateVM.StartDate;
+        education.EndDate = educationUpdateVM.EndDate;
+        education.FacultyName = educationUpdateVM.FacultyName;
+        _edueRepo.UpdateUserEducation(education);
+        _edueRepo.SaveChanges();
     }
 }

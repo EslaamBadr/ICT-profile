@@ -10,19 +10,22 @@ public class EdueRepo : IEdueRepo
         _context = context;
     }
 
-    //Education? IEdueRepo.GetEdue(int id)
-    //{
-    //    return _context.Educations.Find(id);
-    //}
-
-    //IEnumerable<Education> IEdueRepo.GetEdues()
-    //{
-    //    return _context.Educations;
-    //}
-
-
 public IEnumerable<Education> GetEdues(Guid id)
     {
         return _context.Educations.Where(e => e.UserId == id);
     }
+
+    public Education GetEducation(int id)
+    {
+        return _context.Educations.Where(e => e.Id == id).FirstOrDefault();
+    }
+
+    public void UpdateUserEducation(Education education)
+    {
+        _context.Educations.Update(education);
+    }
+    public int SaveChanges()
+    {
+        return _context.SaveChanges();
+    }   
 }
