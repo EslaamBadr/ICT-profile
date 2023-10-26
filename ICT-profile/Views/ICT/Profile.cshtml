@@ -51,7 +51,7 @@
                 <div class="card mt-1">
                     <div class="card-body">
                         <h5 class="card-title">Background </h5>
-                            <h6 class="mt-3" style="color:blue">Work Experience: <a class="ms-3" asp-controller="ICT" asp-action="AddUserExperience"><i class="fa fa-pluss"></i></a></h6>
+                            <h6 class="mt-3" style="color:blue">Work Experience: <a class="ms-3" asp-controller="ICT" asp-action="AddUserExperience" asp-route-id="@Model.UserUpdateVM.Id"><i class="fa fa-plus-square"></i></a></h6>
                             @foreach (var ex in Model.WorkExperiences)
                         {
                             <div class="row mb-2">
@@ -69,7 +69,7 @@
 
                 <div class="card mt-1">
                     <div class="card-body">
-                        <h6 class="mt-3" style="color:blue">Education:</h6>
+                            <h6 class="mt-3" style="color:blue">Education: <a class="ms-3" asp-controller="ICT" asp-action="AddUserEducation" asp-route-id="@Model.UserUpdateVM.Id"><i class="fa fa-plus-square"></i></a></h6>
                         @foreach (var edu in Model.Educations)
                         {
                             <div class="row">

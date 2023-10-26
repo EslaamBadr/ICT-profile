@@ -57,8 +57,6 @@ public class ICTController : Controller
         WorkExperienceUpdateVM experienceToUpdate = _workExperienceManeger.GetExperience(1);
         EducationUpdateVM educationToUpdate = _edueManeger.GetEducation(1);
 
-        //vm
-
 
         fullView.User = user;
         fullView.About = about;
@@ -147,10 +145,29 @@ public class ICTController : Controller
         return RedirectToAction("Profile");
     }
 
+    [HttpGet]
+    public IActionResult AddUserExperience()
+    {
+        WorkExperienceReadVM? model = new WorkExperienceReadVM();
+        return View(model);
+    }
     [HttpPost]
     public IActionResult AddUserExperience(WorkExperienceReadVM experienceVM)
     {
         _workExperienceManeger.AddUserWorkExperience(experienceVM);
+        return RedirectToAction("Profile");
+    }
+
+    [HttpGet]
+    public IActionResult AddUserEducation()
+    {
+        EducationReadVM? model = new EducationReadVM();
+        return View(model);
+    }
+    [HttpPost]
+    public IActionResult AddUserEducation(EducationReadVM educationVM)
+    {
+        _edueManeger.AddUserEducation(educationVM);
         return RedirectToAction("Profile");
     }
 }

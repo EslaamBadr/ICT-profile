@@ -7,4 +7,5 @@ public interface IEdueManeger
     IEnumerable<EducationReadVM> GetEdues(Guid id);
     EducationUpdateVM GetEducation(int id);
     void UpdateUserEducation(EducationUpdateVM educationUpdateVM);
+    void AddUserEducation(EducationReadVM educationVM);
 }

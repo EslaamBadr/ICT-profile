@@ -47,7 +47,7 @@ public class EdueManeger : IEdueManeger
         };
     }
 
-    void IEdueManeger.UpdateUserEducation(EducationUpdateVM educationUpdateVM)
+    public void UpdateUserEducation(EducationUpdateVM educationUpdateVM)
     {
         Education education = _edueRepo.GetEducation(educationUpdateVM.Id);
         if (education == null)
@@ -60,6 +60,22 @@ public class EdueManeger : IEdueManeger
         education.EndDate = educationUpdateVM.EndDate;
         education.FacultyName = educationUpdateVM.FacultyName;
         _edueRepo.UpdateUserEducation(education);
+        _edueRepo.SaveChanges();
+    }
+
+    public void AddUserEducation(EducationReadVM educationVM)
+    {
+        var education = new Education
+        {
+            UserId = educationVM.UserId,
+            UniverstyName = educationVM.UniverstyName,
+            UniverstyImage = educationVM.UniverstyImage,
+            FacultyName = educationVM.FacultyName,
+            StartDate = educationVM.StartDate,
+            EndDate = educationVM.EndDate,
+        };
+
+        _edueRepo.AddUserEducation(education);
         _edueRepo.SaveChanges();
     }
 }

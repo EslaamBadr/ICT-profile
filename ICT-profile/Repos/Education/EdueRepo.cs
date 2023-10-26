@@ -24,8 +24,14 @@ public IEnumerable<Education> GetEdues(Guid id)
     {
         _context.Educations.Update(education);
     }
+
+    public void AddUserEducation(Education education)
+    {
+        _context.Educations.Add(education);
+    }
+
     public int SaveChanges()
     {
         return _context.SaveChanges();
-    }   
+    }
 }
